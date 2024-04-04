@@ -11,6 +11,14 @@ icons.css">
 {% endblock %}
 </head>
 <body>
+
+
+
+
+
+
+
+
 <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
 <div class="container-fluid">
 <a class="navbar-brand" href="{{path('app_accueil')}}">😈👼</a>
@@ -26,19 +34,45 @@ label="Toggle navigation">
 <span class="visually-hidden">(current)</span>
 </a>
 </li>
-<li class="nav-item">
-<a class="nav-link" href="{{path('app_contact')}}">Contact</a>
+
+
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" 
+aria-haspopup="true" aria-expanded="false">Contact</a>
+<div class="dropdown-menu">
+<a class="dropdown-item"
+href="{{path('app_contact')}}">Ajout Contacts</a>
+<a class="dropdown-item"
+href="{{path('liste-contacts')}}">Liste Contacts</a>
+</div>
 </li>
 
 
-<li class="nav-item">
-<a class="nav-link" href="{{path('liste-contacts')}}">liste contacts</a>
+
+
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" 
+aria-haspopup="true" aria-expanded="false">Catégorie</a>
+<div class="dropdown-menu">
+<a class="dropdown-item"
+href="{{path('app_categorie')}}">Ajout Categories</a>
+<a class="dropdown-item"
+href="{{path('app_liste_categories')}}">Liste Categories</a>
+</div>
 </li>
+
+
+
 
 
 <li class="nav-item">
 <a class="nav-link" href="#">About</a>
 </li>
+
+
+
+
+
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
 aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -55,6 +89,37 @@ aria-haspopup="true" aria-expanded="false">Dropdown</a>
 <input class="form-control me-sm-2" type="search" placeholder="Search">
 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 </form>
+
+<ul class="navbar-nav me-auto">
+{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+
+
+<li class="nav-item">
+<a class="nav-link"
+href="{{path('app_login')}}">Se connecter
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link"
+href="{{path('app_register')}}">S'inscrire
+</a>
+</li>
+
+{% else %}
+<li class="nav-item">
+<a class="nav-link text-white" href="{{path('liste-contacts')}}">Liste des contacts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link"
+href="{{path('app_logout')}}"> {{app.user.email}}
+<i class="bi
+bi-x-circle-fill"></i>
+</a>
+</li>
+{% endif %}
+
+</ul>
+
 </div>
 </div>
 </nav>
@@ -67,8 +132,7 @@ aria-haspopup="true" aria-expanded="false">Dropdown</a>
 {% endblock %}
 {% block javascripts %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Q
-yq46cDfL" crossorigin="anonymous"></script>
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 {% endblock %}
 </body>
 </html>

@@ -5,10 +5,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ContactRepository;
 
+
 class ContactController extends AbstractController
 
 {
-#[Route('/liste-contacts', name: 'liste-contacts')]
+#[Route('/mod-liste-contacts', name: 'liste-contacts')]
 public function listeContacts(ContactRepository $contactRepository): Response
 {
     $contacts = $contactRepository->findAll();
@@ -16,4 +17,7 @@ return $this->render('contact/liste-contacts.html.twig', [
     'contacts' => $contacts
 ]);
 }
+
+
+
 }
